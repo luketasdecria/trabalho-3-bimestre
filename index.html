@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identificador de Sabor de Sorvete</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --box-bg: #f4f4f4;
+            --border-color: #ccc;
+        }
+
+        body.alto-contraste {
+            --bg-color: #000000;
+            --text-color: #ffff00;
+            --box-bg: #111111;
+            --border-color: #ffff00;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            background-color: var(--box-bg);
+            border-radius: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button id="btnContraste" onclick="alternarContraste()">Alto Contraste</button>
+        
+        <br>
+        <label for="saborInput">Digite o sabor de sorvete:</label>
+        <input type="text" id="saborInput" placeholder="Digite aqui...">
+
+        <p id="mensagem"></p>
+    </div>
+
+    <script>
+        const inputEl = document.getElementById("saborInput");
+        const mensagemEl = document.getElementById("mensagem");
+
+        function alternarContraste() {
+            document.body.classList.toggle("alto-contraste");
+        }
+
+        inputEl.addEventListener("input", () => {
+            const texto = inputEl.value.trim().toLowerCase();
+
+            if (texto.length > 3) {
+                if (texto === "chocolate") {
+                    mensagemEl.textContent = "Eu amo sorvete de chocolate!";
+                } else if (texto === "flocos") {
+                    mensagemEl.textContent = "Ahh, mas chocolate é o meu favorito...";
+                } else {
+                    mensagemEl.textContent = "Ahh, eu esperava um sabor de sorvete...";
+                }
+            } else {
+                mensagemEl.textContent = "";
+            }
+        });
+    </script>
+
+</body>
+</html>
